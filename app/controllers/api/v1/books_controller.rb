@@ -15,7 +15,6 @@ class Api::V1::BooksController < ApplicationController
     author = Author.find(params[:author_id])
     book = author.books.create(book_params)
     if book.persisted?
-      ActionCable.server.broadcast 'dashbaord_channel', { books_count: Book.count, authors_count: Author.count }
       render json: book, status: :created
     else
       render json: book.errors.full_messages, status: :unprocessable_entity

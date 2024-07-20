@@ -10,6 +10,6 @@ class DashboardChannel < ApplicationCable::Channel
   end
 
   on_subscribe do
-    ActionCable.server.broadcast 'dashbaord_channel', { books_count: Book.count, authors_count: Author.count }
+    DashboardBroadcastJob.perform_later
   end
 end

@@ -13,7 +13,6 @@ class Api::V1::AuthorsController < ApplicationController
   def create
     author = Author.new(author_params)
     if author.save
-      ActionCable.server.broadcast 'dashbaord_channel', { books_count: Book.count, authors_count: Author.count }
       render json: author, status: :created
     else
       render json: author.errors.full_messages, status: :unprocessable_entity
