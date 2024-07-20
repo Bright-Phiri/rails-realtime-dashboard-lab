@@ -6,5 +6,4 @@ class Author < ApplicationRecord
   with_options presence: true do
     validates :name, :email, :phone, uniqueness: { case_sensitive: false }
   end
-  attr_readonly :books_count
 end
