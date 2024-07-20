@@ -4,7 +4,7 @@ module Broadcastable
   extend ActiveSupport::Concern
 
   included do
-    after_commit :broadcast_update, on: :create
+    after_commit :broadcast_update, on: [:create, :destroy]
   end
 
   private
